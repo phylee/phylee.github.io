@@ -1,7 +1,8 @@
 ---
 title: 两种 sudo 技巧
 date: 2017-10-23 00:24:10
-tags: Linux
+tags:
+- Linux
 ---
 
 ## 1 . Vim 编辑需要root权限的文件忘记使用 sudo:

@@ -1,7 +1,8 @@
 ---
 title: 一个简单的 http 服务
 date: 2017-11-08 21:50:14
-tags: Python
+tags:
+- Python
 ---
 
 进入要共享的目录，执行如下命令：

@@ -1,7 +1,8 @@
 ---
 title: DNF将取代YUM
 date: 2017-05-03 23:57:01
-tags: Linux
+tags:
+- Linux
 ---
 
 ```

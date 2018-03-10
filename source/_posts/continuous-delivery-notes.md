@@ -1,7 +1,8 @@
 ---
 title: 持续交付：发布可靠软件的系统方法—-读书笔记
 date: 2018-02-04 12:45:46
-tags: CICD
+tags:
+- CICD
 ---
 
 [豆瓣链接](https://book.douban.com/subject/6862062/)

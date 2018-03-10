@@ -1,7 +1,8 @@
 ---
 title:  文件传输工具(Linux)
 date: 2017-07-07 00:21:24
-tags: Linux
+tags:
+- Linux
 ---
 
 ## sshpass
@@ -32,7 +33,11 @@ $ sshpass -f password_filename ssh user@host_ip 'df -h'
 
 ## rysnc
 
-快速，增量的文件传输工具。
+快速，增量的文件传输工具。支持本地和远程文件传输。
+
+#### rysnc为何传输速度快？
+> 无论是本地或远程文件传输， rsync 首先创建每个源文件块校验的索引。此索引用于查找可能存在于目标中的任何相同数据块。一旦这种块存在，块就被就地使用，而不是从源复制。这大大加快了存在小差异的大文件的同步
+
 
 ## scp （可搭配expect）
 

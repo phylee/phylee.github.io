@@ -1,7 +1,8 @@
 ---
 title: Linux 命令备忘
 date: 2018-01-21 16:54:50
-tags: Linux
+tags:
+- Linux
 ---
 
 本文档主要记录一些 Linux 的命令，不一定常用，只是方便个人查询。

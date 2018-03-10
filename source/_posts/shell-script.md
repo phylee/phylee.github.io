@@ -1,7 +1,9 @@
 ---
 title: Shell脚本学习
 date: 2018-01-27 20:16:08
-tags: Linux shell
+tags:
+- Linux
+- Shell
 ---
 
 ## 变量

@@ -1,7 +1,8 @@
 ---
 title: 学习资料归档
 date: 2017-07-30 23:15:29
-tags: Document
+tags:
+- Doc
 ---
 
 ##  Linux学习资料链接

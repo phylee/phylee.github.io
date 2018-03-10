@@ -1,7 +1,8 @@
 ---
 title: 修改yum源和pip源为国内镜像源
 date: 2017-02-27 13:07:15
-tags: Linux
+tags:
+- Linux
 ---
 ## yum源修改
 #### 1.备份

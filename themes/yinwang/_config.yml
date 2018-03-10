@@ -17,8 +17,8 @@ disqus: liyong-science
 menu:
   Blog: /
   #categories: /categories
-  archives: /archives
-  #tags: /tags
+  Archives: /archives
+  #Tags: /tags
   GitHub: https:github.com/phylee
   About: /about
 

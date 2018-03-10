@@ -1,7 +1,8 @@
 ---
 title: CentOS7免密码远程登录ssh配置
 date: 2017-05-06 15:26:28
-tags: Linux
+tags:
+- Linux
 ---
 
 ### 生成证书公私钥

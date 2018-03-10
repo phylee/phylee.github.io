@@ -1,7 +1,8 @@
 ---
 title: Mac常用快捷键
 date: 2017-10-27 00:21:03
-tags: Mac
+tags:
+- Mac
 ---
 
 # 1 . 常用按键说明

@@ -5,10 +5,10 @@
 # Site
 title: Phylee的小站
 subtitle:
-description:
+description: Linux Python Shell
 author: phylee
 language:
-timezone:
+timezone: Asia/Shanghai
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
@@ -77,7 +77,7 @@ theme: yinwang
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@github.com:phylee/phylee.github.io.git 
+  repo: git@github.com:phylee/phylee.github.io.git
   branch: master
 
 # 包含/排除 檔案或資料夾

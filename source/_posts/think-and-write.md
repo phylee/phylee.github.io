@@ -1,7 +1,8 @@
 ---
 title: 胡思乱想
 date: 2017-07-04 22:27:06
-tags: Notes
+tags:
+- Doc
 ---
 
 1 . 自动化测试

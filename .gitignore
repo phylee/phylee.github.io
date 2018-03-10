@@ -6,3 +6,7 @@ node_modules/
 public/
 .deploy*/
 .tag*
+package.json
+package-lock.json
+source/google9fd4d51476911999.html
+source/tags/
