@@ -15,6 +15,8 @@ $ uname -a
 ```shell
 $ lshw
 ```
+> 若命令不存在，CentOS安装方法“ yum install lshw ”
+
 * 查看块设备（硬盘，闪存驱动器）信息
 ```shell
 lsblk

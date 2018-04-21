@@ -10,6 +10,7 @@ tags:
 * [Linux性能调优指南](https://www.gitbook.com/book/lihz1990/transoflptg/details)
 
 ## Python学习资料链接
+* [awesome-python](https://awesome-python.com/)
 * [Python最佳实践指南](http://pythonguidecn.readthedocs.io/zh/latest/index.html)
 * [如何将字符串转为字典](http://funhacks.net/2016/04/24/python_将字符串转为字典/)
 
