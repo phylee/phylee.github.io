@@ -177,21 +177,24 @@ $ gpg --armor --export  [用户ID uid]
 
 在输出的内容中，从“—–BEGIN PGP PUBLIC KEY BLOCK—–”复制到“—–END PGP PUBLIC KEY BLOCK—–”。打开 GitHub 设置密钥的网页，粘贴 GPG 密钥.
 
-5 . 设置git
-让 Git 使用指定的 GPG 密钥.
+5 . 使用签名
 
-在 ~/.gitconfig 文件中添加下述设置：
+首先你需要为Git 设置一个用于签名的私钥，通常来说所有的个人项目都用一个私钥进行签名，所以建议设置为全局配置。
 ```
-[user]
-  ...
-  signingkey = <GPG-ID>
+$ git config --global user.signingkey <key ID>
 ```
-
-6 . 使用签名创建tag
+然后就可以使用这个私钥来签名提交。
 ```
-$ git tag -a -s X.Y.Z
+$ git commit -S
 ```
-
+或者签名标签了。
+```
+$ git tag -s <tag>
+```
+如果你想全局默认使用GPG 签名提交，可以全局将commit.gpgsign 设置为true。
+```
+$ git config --global commit.gpgsign true
+```
 
 > 参考文档：
 * https://segmentfault.com/a/1190000002940724
