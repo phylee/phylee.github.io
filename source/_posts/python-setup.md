@@ -8,13 +8,13 @@ Python的软件包一开始是没有官方的标准分发格式的。 后来不�
 
 # 两种打包方式
 
-## [纯 setuptools 打包](https://setuptools.readthedocs.io/en/latest/setuptools.html)
+## [纯setuptools打包](https://setuptools.readthedocs.io/en/latest/setuptools.html)
 
 * setuptools 是Python distutils增强版的集合，它可以帮助我们更简单的创建和分发Python包，特别是对其他包有依赖关系时。
 
-### 使用 setuptools 最小的setup.py配置：
+### 使用setuptools最小的setup.py配置：
 
-```
+```python
 from setuptools import setup, find_packages
 setup(
     name="HelloWorld",
@@ -22,10 +22,12 @@ setup(
     packages=find_packages(),
 )
 ```
+
 setuptools 通过find_packages函数来自动包含所有的packages，对于大型软件来说，极大的方便了packages的管理。
 
 ### setup.py的setup函数的常用参数：
-```
+
+```text
 name -> 为项目名称，和顶层目录名称一致;
 version -> 是项目当前的版本，1.0.0.dev1表示1.0.0版，目前还处于开发阶段
 description -> 是包的简单描述，这个包是做什么的
@@ -43,36 +45,46 @@ install_requires -> 指定了在安装这个包的过程中, 需要哪些其他�
 entry_points -> 可以定义安装该模块后执行的脚本，比如将某个函数作为
 ```
 
-### 常用的 setuptools 打包命令有：
+### 常用的setuptools打包命令有：
+
 * 源码打包(tar.gz):
-```
-$ python setup.py sdist
+
+```shell
+python setup.py sdist
 ```
 
 * 通用egg格式:
 > 本质上是一个压缩文件，只是扩展名换了，里面也包含了项目元数据以及源代码，由setuptools项目引入
-```
-$ python setup.py bdist_egg
+
+```shell
+python setup.py bdist_egg
 ```
 
 * 通用whell格式:
 > 本质上是一个压缩文件，只是扩展名换了，里面也包含了项目元数据和代码，由PEP 427引入
+
+```shell
+python setup.py bdist_wheel
 ```
-$ python setup.py bdist_wheel
-```
+
 * rpm格式打包：
-```
-$ python setup.py bdist_rpm
+
+```shell
+python setup.py bdist_rpm
 ```
 
 * 应用安装
+
+```shell
+python setup.py install
 ```
-$ python setup.py install
-```
+
 * 以开发方式安装
+
+```shell
+python setup.py develop
 ```
-$ python setup.py develop
-```
+
 > 使用”develop”开发方式安装的话，应用代码不会真的被拷贝到本地Python环境的”site-packages”目录下，而是在”site-packages”目录里创建一个指向当前应用位置的链接。这样如果当前位置的源码被改动，就会马上反映到”site-packages”里。
 
 ## [使用 pbr 打包](https://docs.openstack.org/pbr/latest/index.html)
@@ -80,7 +92,8 @@ $ python setup.py develop
 OpenStack也是使用setuptools工具来进行打包，不过它引入了一个辅助工具pbr来配合setuptools完成打包工作。
 
 那么OpenStack社区为啥要开发pbr呢？因为setuptools库使用起来还是有点麻烦，参数太多，而且直接通过指定setup函数的参数的方法实在太不方便了。pbr就是为了方便而生的，它带了了如下的改进：
-```
+
+```text
 使用setup.cfg文件来提供包的元数据。这个是从disutils2学来的。
 基于requirements.txt文件来实现自动依赖安装。requirements.txt文件中包含了一个项目所要依赖的库。
 利用Sphinx实现文档自动化。
@@ -88,15 +101,18 @@ OpenStack也是使用setuptools工具来进行打包，不过它引入了一个�
 针对git自动创建文件列表。
 基于git tags的版本号管理。
 ```
+
 ### pbr打包配置
 setup.py
-```
+
+```python
 import setuptools
 setuptools.setup(setup_requires=['pbr'],pbr=True)
 ```
 
 setup.cfg
-```
+
+```text
 [metadata]
 name = mypackage
 description = A short description
@@ -105,10 +121,12 @@ author = John Doe
 author-email = john.doe@example.com
 license = BSD
 ```
+
 ### pbr 打包版本号（version）
 
 使用pbr版本号有两种方式：postversioning和preversioning，postversioning是默认方式。要是用preversioning的方式，则需要设置setup.cfg文件中的[metadata]段的version字段的值。无论采用哪种方式，版本号都是从git的历史推理得到的。pbr使用的版本号标准是Linux/Python Compatible Semantic Versioning 3.0.0，简单的说就是下面这个标准：
- ```
+
+```text
 Given a version number MAJOR.MINOR.PATCH, increment the:
 
 MAJOR version when you make incompatible API changes,
@@ -117,18 +135,21 @@ PATCH version when you make backwards-compatible bug fixes.
 ```
 
 pbr的版本推导按照如下的步骤进行（注意，最终版本号才是软件包的版本号）：
-* 如果设置version的值为一个给定的版本号，且这个版本号刚好对应一个tag，则这个值就是最终版本号（注意，这里只有签名的tag才有效）。
-* 如果不是上面情况，则pbr会找到最近的一个tag，然后为其MINOR值加1得到一个比它大的最小版本号（注意，这个还不是最终版本号）。
- 然后pbr会从最近的一个tag开始遍历所有的git commit，并检查每个提交的commit message，在commit message中查找Sem-Ver:这样的行：
+
+1. 如果设置version的值为一个给定的版本号，且这个版本号刚好对应一个tag，则这个值就是最终版本号（注意，这里只有签名的tag才有效）。
+2. 如果不是上面情况，则pbr会找到最近的一个tag，然后为其MINOR值加1得到一个比它大的最小版本号（注意，这个还不是最终版本号）。
+3. 然后pbr会从最近的一个tag (如果没有tag，默认是0.0.1) 开始遍历所有的git commit，并检查每个提交的commit message，在commit message中查找Sem-Ver:这样的行：
 
 Sem-Ver的值有如下几种：
-```
+
+```text
 feature
 api-break
 deprecation
 bugfix
 ```
-```
+
+```text
 如果Sem-Ver的值是bugfix，则会增加版本号中PATCH部分的值。
 如果Sem-Ver的值是feature或者deprecation，则会增加版本号中MINOR部分的值。
 如果Sem-Ver的值是api-break，则会增加版本号中MAJOR部分的值。
@@ -147,12 +168,14 @@ bugfix
 pbr要求tag都是要**签名**的，也就是打tag时要使用git tag -a -s X.Y.Z的形式。
 
 pbr 支持两种tag形式
-```
+
+```text
 1 . bare version tag (e.g. 0.1.0)
 2 . 带有前缀 v 或者 V (e.g. v0.1.0))
 ```
 
 ### 创建tag如何使用GPG签名
+
 1 . 安装：
 
 ```shell
@@ -161,18 +184,23 @@ $ brew install gpg
 Centos 环境下:
 $ yum install gnupg
 ```
+
 2 . 生成密钥
-```
-$ gpg --gen-key
+
+```shell
+gpg --gen-key
 ```
 
 3 . 查看系统中已有的密钥
+
+```shell
+gpg --list-keys
 ```
-$ gpg --list-keys
-```
+
 4 . 输出密钥
-```
-$ gpg --armor --export  [用户ID uid]
+
+```shell
+gpg --armor --export  [用户ID uid]
 ```
 
 在输出的内容中，从“—–BEGIN PGP PUBLIC KEY BLOCK—–”复制到“—–END PGP PUBLIC KEY BLOCK—–”。打开 GitHub 设置密钥的网页，粘贴 GPG 密钥.
@@ -180,20 +208,27 @@ $ gpg --armor --export  [用户ID uid]
 5 . 使用签名
 
 首先你需要为Git 设置一个用于签名的私钥，通常来说所有的个人项目都用一个私钥进行签名，所以建议设置为全局配置。
+
+```shell
+git config --global user.signingkey <key ID>
 ```
-$ git config --global user.signingkey <key ID>
-```
+
 然后就可以使用这个私钥来签名提交。
+
+```shell
+git commit -S
 ```
-$ git commit -S
-```
+
 或者签名标签了。
+
+```shell
+git tag -s <tag>
 ```
-$ git tag -s <tag>
-```
+
 如果你想全局默认使用GPG 签名提交，可以全局将commit.gpgsign 设置为true。
-```
-$ git config --global commit.gpgsign true
+
+```shell
+git config --global commit.gpgsign true
 ```
 
 > 参考文档：
