@@ -12,10 +12,18 @@ timezone: Asia/Shanghai
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: http://liyong.science
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
+
+search:
+  path: search.xml
+  field: post
+
+# 自动生成sitemap
+sitemap:
+path: sitemap.xml
 
 # Directory
 source_dir: source
@@ -65,8 +73,6 @@ time_format: HH:mm:ss
 ## Set per_page to 0 to disable pagination
 per_page: 0
 pagination_dir: page
-
-disqus_shortname: liyong-science
 
 # Extensions
 ## Plugins: https://hexo.io/plugins/
