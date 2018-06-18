@@ -72,8 +72,9 @@ expect eof
 ```text
 1 . /usr/bin/expect就是 which expect 的路径
 2 . 脚本需要执行权限。 chmod +x autoscp.sh
-3 . 执行脚本是./autoscp.sh, 不是 sh autoscp.sh。否则会报一些命令not found。因为该脚本用的并不是bash,脚本第一行已经写明。
+3 . 执行脚本是./autoscp.sh, 不是 sh autoscp.sh。否则会报一些命令not found。
+    因为该脚本用的并不是bash,脚本第一行已经写明。
 4 . expect中执行命令是有一个timeout的设定的，默认超时时间为10s。
-若一条命令未timeout限定时间内执行完，就会中断该条命令的下一条命令。
-在expect脚本中设定timeout，可覆盖原本的timeout.
+    若一条命令未timeout限定时间内执行完，就会中断该条命令的下一条命令。
+    在expect脚本中设定timeout，可覆盖原本的timeout.
 ```

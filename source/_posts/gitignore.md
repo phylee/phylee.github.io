@@ -1,10 +1,9 @@
 ---
 title: gitignore 文件配置
 date: 2018-06-16 12:12:57
-tags: Git
+tags: 
+- Git
 ---
-# gitignore 文件配置 
-
 ## 定义 gitignore 的配置文件
 
 ```text
@@ -15,7 +14,7 @@ $GIT_DIR/info/exclude
 $HOME/.config/git/ignore
 ```
 
-gitignore 用于用于配置Git仓库中不需要加入版本管理的文件。如果文件已经被Git追踪则不受gitignore影响。
+gitignore 用于配置Git仓库中不需要加入版本管理的文件。如果文件已经被Git追踪则不受gitignore影响。
 
 ## gitignore 语法规则
 

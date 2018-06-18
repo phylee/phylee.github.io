@@ -5,7 +5,7 @@ tags:
 - Linux
 ---
 
-```
+```text
 The reason of initiating DNF project was because of
 the biggest three pitfalls of Yum: undocumented API,
 broken dependency solving algorithm and inability to
@@ -20,6 +20,5 @@ and dirty hacks are allowed. The project is directed by agile
 development – the features that have the greatest impact
 on users are operatively implemented with higher priority.
 ```
-[原文链接](http://dnf.baseurl.org/2015/05/11/yum-is-dead-long-live-dnf/)
 
-这篇文章中写道，DNF取代YUM三个重要原因有一个是“undocumented API”, 想不到API 文档这么重要。
+[原文链接](http://dnf.baseurl.org/2015/05/11/yum-is-dead-long-live-dnf/)
