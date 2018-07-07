@@ -6,50 +6,87 @@ tags:
 ---
 
 ## sshpass
-#### 安装
+
+### 安装
+
 ```shell
-# yum install sshpass
+yum install sshpass
 ```
-#### 使用方法（3种）
+
+### 使用方法（3种）
+
 1 . 直接用密码
+
 ```shell
-$ sshpass -p 'host_pass' ssh user@host_ip 'df -h'
-$ sshpass -p 'host_pass' scp -r root@host_ip:/home/test/ ./tmp/
+sshpass -p 'host_pass' ssh user@host_ip 'df -h'
+sshpass -p 'host_pass' scp -r root@host_ip:/home/test/ ./tmp/
 ```
 
 首次连接需要加参数-o StrictHostKeyChecking=no, 否则return code是6 ：
+
 ```shell
-$ sshpass -p 'host_pass' ssh  -o StrictHostKeyChecking=no  user@host_ip 'df -h'
+sshpass -p 'host_pass' ssh  -o StrictHostKeyChecking=no  user@host_ip 'df -h'
 ```
+
 2 . 使用环境变量保存密码
+
 ```shell
-$ export SSHPASS='host_pass'
-$ sshpass -e ssh user@host_ip 'df -h'
+export SSHPASS='host_pass'
+sshpass -e ssh user@host_ip 'df -h'
 ```
+
 3 . 使用文件保存密码
+
 ```shell
-$ sshpass -f password_filename ssh user@host_ip 'df -h'
+sshpass -f password_filename ssh user@host_ip 'df -h'
 ```
 
 ## rysnc
 
 快速，增量的文件传输工具。支持本地和远程文件传输。
 
-#### rysnc为何传输速度快？
-> 无论是本地或远程文件传输， rsync 首先创建每个源文件块校验的索引。此索引用于查找可能存在于目标中的任何相同数据块。一旦这种块存在，块就被就地使用，而不是从源复制。这大大加快了存在小差异的大文件的同步
+### 注意目录后斜杠“/”
 
+rsync 遵循 BSD cp 的约定, 源目录后面带有一个斜杠“/”有着特定的处理。
+比如：
+
+```shell
+rsync -r source destination
+```
+
+创建一个有着 "source"内容的 "destination/source"目录。
+
+```shell
+rsync -r source/ destination
+```
+
+把"source/"目录下的所有文件全部复制到"destination"目录下，而没有中间的子目录, 就像你调用了：
+
+```shell
+rsync -r source/. destination
+```
+
+这与 GNU cp 的行为是不同的，在GNU cp中"source" 与 "source/" 意义相同 (不是"source/.")。此外，一些shell可以在你键入Tab补全的时候自动自动给目录追加尾部下划线。需要注意自身的使用场景，避免这种细节上的错误。
+
+### rysnc为何传输速度快？
+
+无论是本地或远程文件传输， rsync 首先创建每个源文件块校验的索引。此索引用于查找可能存在于目标中的任何相同数据块。一旦这种块存在，块就被就地使用，而不是从源复制。这大大加快了存在小差异的大文件的同步
 
 ## scp （可搭配expect）
 
-#### expect是一个用来处理交互的命令。
+### expect是一个用来处理交互的命令
+
 expect中四个常用命令是send,expect,spawn,interact。
+
 ```text
 send：用于向进程发送字符串
 expect：从进程接收字符串
 spawn：启动新的进程
 interact：允许用户交互
 ```
+
 Example: 如下脚本autoscp.sh
+
 ```shell
 #!/usr/bin/expect
 set user [lindex $argv 0]
@@ -69,6 +106,7 @@ expect eof
 ```
 
 注意点：
+
 ```text
 1 . /usr/bin/expect就是 which expect 的路径
 2 . 脚本需要执行权限。 chmod +x autoscp.sh
