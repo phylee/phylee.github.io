@@ -1,5 +1,5 @@
 ---
-title: Maven 学习
+title: Maven 学习小记
 date: 2018-12-01 23:49:27
 tags: 
 - Maven
