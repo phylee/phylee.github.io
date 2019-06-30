@@ -5,7 +5,6 @@ tags:
 - Linux
 - Shell
 ---
-#
 
 ## 变量
 
