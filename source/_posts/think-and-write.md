@@ -2,7 +2,7 @@
 title: 胡思乱想
 date: 2017-07-04 22:27:06
 tags:
-- Doc
+- Document
 ---
 
 ## 自动化测试
