@@ -2,7 +2,7 @@
 title: Python学习 - bool
 date: 2018-07-19 20:47:01
 tags:
-- Python 
+- Python
 ---
 
 ## bool类型

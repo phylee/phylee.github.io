@@ -4,13 +4,17 @@ date: 2017-02-27 13:07:15
 tags:
 - Linux
 ---
+
 ## yum源修改
+
 #### 1.备份
+
 首先要备份yum源，如果出现未知的错误，方便快速恢复。
 
 ```bash
 $ mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
 ```
+
 #### 2.下载国内镜像源
 以163源为例，也可以是其他国内镜像源，如阿里云等。
 
@@ -21,10 +25,12 @@ $ mv CentOS7-Base-163.repo CentOS-Base.repo
 ```
 
 #### 3.生成缓存
+
 ```bash
 $ yum clean all
 $ yum makecache
 ```
+
 ## pip源修改
 
 #### 1.在主目录下创建.pip文件夹
