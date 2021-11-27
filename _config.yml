@@ -100,7 +100,6 @@ exclude:
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 theme: noise
-# theme: landscape
 
 noise:
   menu:
