@@ -1,0 +1,156 @@
+<!DOCTYPE html><html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content=" id=&quot;变量&quot;&gt;&lt;a href=&quot;#变量&quot; class=&quot;headerlink&quot; title=&quot;变量&quot;&gt;&lt;/a&gt;变量&lt;/h2&gt;&lt;p&gt;1.定义变量,变量名和等号之间不能有空格。"><link rel="stylesheet" type="text/css" href="/css/normalize.css"><link rel="stylesheet" type="text/css" href="/css/highlight.css"><link rel="stylesheet" type="text/css" href="/css/noise.css"><title>Shell学习 | Phylee的小站</title><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><meta name="generator" content="Hexo 5.0.0"></head><body><article class="wrapper"><div class="post-main"><div class="nav"><nav class="container"><a class="sidebar-nav-item active" href="/">Home</a><a class="sidebar-nav-item" href="/archives">Archives</a><a class="sidebar-nav-item" href="/about">About</a></nav><div class="container post-meta"><div class="post-tags"><a class="post-tag-none-link" href="/tags/Linux/" rel="tag">Linux</a><a class="post-tag-none-link" href="/tags/Shell/" rel="tag">Shell</a></div><div class="post-time">2018-01-27</div></div></div><div class="container post-header"><h1>Shell学习</h1></div><div class="container post-toc"><details class="toc"><summary class="toc-accordion">Table of Contents</summary><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%98%E9%87%8F"><span class="toc-number">1.</span> <span class="toc-text">变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">2.</span> <span class="toc-text">字符串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">3.</span> <span class="toc-text">运算符</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%97%E6%95%B0%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">3.1.</span> <span class="toc-text">算数运算符</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">3.1.1.</span> <span class="toc-text">字符串运算符</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E8%AF%AD%E5%8F%A5"><span class="toc-number">4.</span> <span class="toc-text">条件语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E7%BB%84"><span class="toc-number">5.</span> <span class="toc-text">数组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BD%E6%95%B0"><span class="toc-number">6.</span> <span class="toc-text">函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Here-Document"><span class="toc-number">7.</span> <span class="toc-text">Here Document</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#echo-%E5%92%8C-printf-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">8.</span> <span class="toc-text">echo 和 printf 的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#fork-source-exec%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">9.</span> <span class="toc-text">fork, source, exec的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E4%B8%AA%E7%9B%AE%E5%BD%95%E5%88%87%E6%8D%A2-pushd%EF%BC%8C-popd%EF%BC%8C-dirs"><span class="toc-number">10.</span> <span class="toc-text">多个目录切换-pushd， popd， dirs</span></a></li></ol></details></div><div class="container post-content"><h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><p>1.定义变量,变量名和等号之间不能有空格。</p>
+<blockquote>
+<p>variableName=”value”</p>
+</blockquote>
+<p>2.使用一个定义过的变量，只要在变量名前面加美元符号（$）即可。变量名外面的花括号是可选的，加不加都行，加花括号是为了帮助解释器识别变量的边界，</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo $variableName</span><br><span class="line">echo $&#123;variableName&#125;</span><br></pre></td></tr></table></figure>
+
+<p>3.特殊变量</p>
+<table>
+<thead>
+<tr>
+<th>变量</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>$0</td>
+<td>当前脚本的文件名</td>
+</tr>
+<tr>
+<td>$n</td>
+<td>传递给脚本或函数的参数。n 是一个数字，表示第几个参数。如：1，2,…</td>
+</tr>
+<tr>
+<td>$#</td>
+<td>传递给脚本或函数的参数个数</td>
+</tr>
+<tr>
+<td>$*</td>
+<td>传递给脚本或函数的所有参数。</td>
+</tr>
+<tr>
+<td>$@</td>
+<td>传递给脚本或函数的所有参数。被双引号(“ “)包含时，与 $* 稍有不同</td>
+</tr>
+<tr>
+<td>$?</td>
+<td>上个命令的退出状态，或函数的返回值。</td>
+</tr>
+<tr>
+<td>$$</td>
+<td>当前 Shell 进程 ID。对于 Shell 脚本，就是这些脚本所在的进程 ID</td>
+</tr>
+</tbody></table>
+<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><p>字符串可以用单引号，也可以用双引号，也可以不用引号。</p>
+<ol>
+<li>单引号里的任何字符都会原样输出，单引号字符串中的变量是无效的； 单引号字串中不能出现单引号（对单引号使用转义符后也不行）。</li>
+<li>双引号里可以有变量 双引号里可以出现转义字符</li>
+</ol>
+<h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><h3 id="算数运算符"><a href="#算数运算符" class="headerlink" title="算数运算符"></a>算数运算符</h3><p>原生 bash 不支持简单的数学运算，但是可以通过其他命令来实现，例如 awk 和 expr，expr 最常用。</p>
+<p>例如：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"></span><br><span class="line">val=`expr 2 + 2`</span><br><span class="line">echo "Total value : $val"</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>表达式和运算符之间要有空格，例如 2+2 是不对的，必须写成 2 + 2 。</li>
+<li>完整的表达式要被 包含，注意这个字符不是常用的单引号，在 Esc 键下边。</li>
+</ol>
+<h4 id="字符串运算符"><a href="#字符串运算符" class="headerlink" title="字符串运算符"></a>字符串运算符</h4><table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>说明</th>
+<th>举例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>=</td>
+<td>检测两个字符串是否相等，相等返回 true</td>
+<td>[ a = b ] 返回 false</td>
+</tr>
+<tr>
+<td>!=</td>
+<td>检测两个字符串是否相等，不相等返回 true</td>
+<td>[ a != b ] 返回 true</td>
+</tr>
+<tr>
+<td>-z</td>
+<td>检测字符串长度是否为0，为0返回 true</td>
+<td>[ -z $a ] 返回 false</td>
+</tr>
+<tr>
+<td>-n</td>
+<td>检测字符串长度是否为0，不为0返回 true</td>
+<td>[ -z $a ] 返回 true</td>
+</tr>
+<tr>
+<td>str</td>
+<td>检测字符串是否为空，不为空返回 true</td>
+<td>[ $a ] 返回 true</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>字符串判断相等是 ”=”，数字判断相等是 “==”</p>
+</blockquote>
+<h2 id="条件语句"><a href="#条件语句" class="headerlink" title="条件语句"></a>条件语句</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if [ expression ]</span><br><span class="line">then</span><br><span class="line">   Statement(s) to be executed if expression is true</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>最后必须以 fi 来结尾闭合 if，fi 就是 if 倒过来拼写。</li>
+<li>expression 和方括号([ ])之间必须有空格，否则会有语法错误。</li>
+</ol>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><p>在 Shell 中，用括号来表示数组，数组元素用“空格”符号分割开。定义数组的一般形式为：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">array_name=(value1 ... valuen)</span><br></pre></td></tr></table></figure>
+
+<p>读取数组元素值的一般格式是：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">&#123;array_name[index]&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><p>Shell 函数的定义格式:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function function_name () &#123;</span><br><span class="line">    list of commands</span><br><span class="line">    [ return value ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>Shell 函数必须先定义后使用。</li>
+<li>函数名前关键字 function 可加可不加。</li>
+<li>函数返回值，可以显式增加 return 语句；如果不加，会将最后一条命令运行结果作为返回值。</li>
+<li>Shell 函数返回值只能是整数，一般用来表示函数执行成功与否，0表示成功，其他值表示失败。如果 return 其他数据，比如一个字符串，往往会得到错误提示：“numeric argument required”。</li>
+<li>在 Shell中，调用函数时可以向其传递参数。在函数体内部，通过 n的形式来获取参数的值，例如，1 表示第一个参数，$2 表示第二个参数…。当 n&gt;=10 时，需要使用 ${n} 来获取参数。</li>
+</ol>
+<h2 id="Here-Document"><a href="#Here-Document" class="headerlink" title="Here Document"></a>Here Document</h2><p>Here Document 是 Shell 中的一种特殊的重定向方式，它的基本的形式如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">command &lt;&lt; delimiter</span><br><span class="line">    document</span><br><span class="line">delimiter</span><br></pre></td></tr></table></figure>
+
+<p>将两个 delimiter 之间的内容(document) 作为输入传递给 command。</p>
+<p>例如：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cat &lt;&lt; EOF &gt; test.txt</span><br><span class="line">This is a simple test</span><br><span class="line">This is a simple test</span><br><span class="line">This is a simple test</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>结尾的 delimiter 一定要顶格写，前面不能有任何字符，后面也不能有任何字符，包括空格和 tab 缩进。</li>
+<li>开始的 delimiter 前后的空格会被忽略掉。</li>
+<li>EOF 只是一个标识而已，可以替换成任意的合法字符。</li>
+</ol>
+<h2 id="echo-和-printf-的区别"><a href="#echo-和-printf-的区别" class="headerlink" title="echo 和 printf 的区别"></a>echo 和 printf 的区别</h2><ul>
+<li>echo 命令格式</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo arg</span><br></pre></td></tr></table></figure>
+
+<p>后面接字符串或者变量可以加双引号也可以不加。可以显示转义字符。</p>
+<ul>
+<li>printf 命令的语法：参数多于格式控制符(%)时，format-string 可以重用，可以将所有参数都转换</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">printf  format-string  [arguments...]</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">format-string 为格式控制字符串，arguments 为参数列表。</span><br><span class="line">printf 命令不用加括号</span><br><span class="line">format-string 可以没有引号，但最好加上，单引号双引号均可.</span><br><span class="line">参数多于格式控制符(%)时，format-string 可以重用，可以将所有参数都转换</span><br><span class="line">arguments 使用空格分隔，不用逗号</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>printf 不像 echo 那样会自动换行，必须显式添加换行符(\n)。</li>
+<li>printf 由 POSIX 标准所定义，移植性要比 echo 好。</li>
+</ul>
+<h2 id="fork-source-exec的区别"><a href="#fork-source-exec的区别" class="headerlink" title="fork, source, exec的区别"></a>fork, source, exec的区别</h2><p>fork: 当前执行的脚本程序，是在父进程 (当前shell) 产生的一个子进程 (sub-shell)中执行的, 子进程在结束后，将返回到父进程中。 在子进程的环境中如何变更，均不会影响父进程的环境。</p>
+<p>source: 是让当前脚本在当前 shell 执行， 而不是产生一个 sub-shell 来执行。 由于所有执行结果均在当前 shell 内执行、而不是产生一个 sub-shell 来执行,  该脚本对环境产生的变更，会影响当前shell的环境。</p>
+<p>exec:  与fork不同，不需要新开一个 sub-shell 来执行当前脚本， 而是在当前 shell 内执行（这一点和source相同）。但是使用exec 调用一个新脚本以后, 父脚本中 exec 行之后的内容就不会再执行了（这一点和source和fork都不同）。</p>
+<h2 id="多个目录切换-pushd，-popd，-dirs"><a href="#多个目录切换-pushd，-popd，-dirs" class="headerlink" title="多个目录切换-pushd， popd， dirs"></a>多个目录切换-pushd， popd， dirs</h2><p>目录栈是用户最近访问过的系统目录列表，并以堆栈的形式管理。<br>dirs ：显示当前目录栈中的所有记录。<br>pushd： 常用于将目录加入到栈中，加入记录到目录栈顶部，并切换到该目录；若pushd命令不加任何参数，则会将位于记录栈最上面的2个目录对换位置。<br>popd： 用于删除目录栈中的记录；如果popd命令不加任何参数，则会先删除目录栈最上面的记录，然后切换到删除过后的目录栈中的最上面的目录。</p>
+</div></div><div class="post-main post-comment"></div></article><link rel="stylesheet" type="text/css" href="//cdn.bootcdn.net/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcdn.net/ajax/libs/lato-font/3.0.0/css/lato-font.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcdn.net/ajax/libs/fancybox/2.1.5/jquery.fancybox.css"><script src="//cdn.bootcdn.net/ajax/libs/jquery/2.0.3/jquery.min.js"></script><script src="//cdn.bootcdn.net/ajax/libs/fancybox/2.1.5/jquery.fancybox.pack.js"></script><script>$(document).ready(function() {
+  $(".fancybox").fancybox();
+});
+</script></body></html>

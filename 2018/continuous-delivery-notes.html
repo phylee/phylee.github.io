@@ -1,0 +1,181 @@
+<!DOCTYPE html><html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="&lt;a href=&quot;https://book.douban.com/subject/6862062/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;豆瓣链接&lt;/a&gt;"><link rel="stylesheet" type="text/css" href="/css/normalize.css"><link rel="stylesheet" type="text/css" href="/css/highlight.css"><link rel="stylesheet" type="text/css" href="/css/noise.css"><title>持续交付：发布可靠软件的系统方法—-读书笔记 | Phylee的小站</title><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><meta name="generator" content="Hexo 5.0.0"></head><body><article class="wrapper"><div class="post-main"><div class="nav"><nav class="container"><a class="sidebar-nav-item active" href="/">Home</a><a class="sidebar-nav-item" href="/archives">Archives</a><a class="sidebar-nav-item" href="/about">About</a></nav><div class="container post-meta"><div class="post-tags"><a class="post-tag-none-link" href="/tags/DevOps/" rel="tag">DevOps</a></div><div class="post-time">2018-02-04</div></div></div><div class="container post-header"><h1>持续交付：发布可靠软件的系统方法—-读书笔记</h1></div><div class="container post-toc"><details class="toc"><summary class="toc-accordion">Table of Contents</summary><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E7%AF%87"><span class="toc-number">1.</span> <span class="toc-text">基础篇</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC1%E7%AB%A0-%E8%BD%AF%E4%BB%B6%E4%BA%A4%E4%BB%98%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">1.1.</span> <span class="toc-text">第1章 软件交付的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC2%E7%AB%A0-%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86"><span class="toc-number">1.2.</span> <span class="toc-text">第2章 配置管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC3%E7%AB%A0-%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90"><span class="toc-number">1.3.</span> <span class="toc-text">第3章 持续集成</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2%E6%B5%81%E6%B0%B4%E7%BA%BF"><span class="toc-number">2.</span> <span class="toc-text">部署流水线</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC5%E7%AB%A0-%E9%83%A8%E7%BD%B2%E6%B5%81%E6%B0%B4%E7%BA%BF%E8%A7%A3%E6%9E%90"><span class="toc-number">2.1.</span> <span class="toc-text">第5章  部署流水线解析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC6%E7%AB%A0-%E6%9E%84%E5%BB%BA%E4%BA%8E%E9%83%A8%E7%BD%B2%E7%9A%84%E8%84%9A%E6%9C%AC%E5%8C%96"><span class="toc-number">2.2.</span> <span class="toc-text">第6章 构建于部署的脚本化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC7%E7%AB%A0-%E6%8F%90%E4%BA%A4%E9%98%B6%E6%AE%B5"><span class="toc-number">2.3.</span> <span class="toc-text">第7章 提交阶段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC8%E7%AB%A0-%E8%87%AA%E5%8A%A8%E5%8C%96%E9%AA%8C%E6%94%B6%E6%B5%8B%E8%AF%95"><span class="toc-number">2.4.</span> <span class="toc-text">第8章 自动化验收测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC10%E7%AB%A0-%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E7%9A%84%E9%83%A8%E7%BD%B2%E4%B8%8E%E5%8F%91%E5%B8%83"><span class="toc-number">2.5.</span> <span class="toc-text">第10章 应用程序的部署与发布</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%A4%E4%BB%98%E7%94%9F%E6%80%81%E5%9C%88"><span class="toc-number">3.</span> <span class="toc-text">交付生态圈</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC12%E7%AB%A0-%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86"><span class="toc-number">3.1.</span> <span class="toc-text">第12章 数据管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC13%E7%AB%A0-%E7%BB%84%E5%BB%BA%E5%92%8C%E4%BE%9D%E8%B5%96%E7%AE%A1%E7%90%86"><span class="toc-number">3.2.</span> <span class="toc-text">第13章 组建和依赖管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC14%E7%AB%A0-%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E8%BF%9B%E9%98%B6"><span class="toc-number">3.3.</span> <span class="toc-text">第14章 版本控制进阶</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC15%E7%AB%A0-%E6%8C%81%E7%BB%AD%E4%BA%A4%E4%BB%98%E7%AE%A1%E7%90%86"><span class="toc-number">3.4.</span> <span class="toc-text">第15章 持续交付管理</span></a></li></ol></li></ol></details></div><div class="container post-content"><p><a href="https://book.douban.com/subject/6862062/" target="_blank" rel="noopener">豆瓣链接</a></p>
+<p>本文主要是对阅读书籍我认为重要的内容进行概要记录。</p>
+<h1 id="基础篇"><a href="#基础篇" class="headerlink" title="基础篇"></a>基础篇</h1><h2 id="第1章-软件交付的问题"><a href="#第1章-软件交付的问题" class="headerlink" title="第1章 软件交付的问题"></a>第1章 软件交付的问题</h2><p>1.6 软件交付原则</p>
+<ul>
+<li><p>为软件发布创建一个可重复且可靠的过程</p>
+<p>如何做到：（1）几乎将所有事情自动化。（2）将构建、部署、测试和发布软件所需的东西全部纳入到版本控制管理之中。</p>
+</li>
+<li><p>将几乎所有事情自动化</p>
+</li>
+</ul>
+<p>自动化是部署流水线的前提。</p>
+<ul>
+<li>把所有的东西都纳入版本控制</li>
+</ul>
+<p>包括文档，测试脚本，配置脚本，部署脚本，升级和回退脚本等等。</p>
+<ul>
+<li><p>提前并频繁地做让你感到痛苦的事</p>
+</li>
+<li><p>内建质量<br>将软件问题提前暴露，一旦发现流水线有失败，就要马上着手修复。</p>
+</li>
+<li><p>“DONE” 意味着 “已发布”</p>
+</li>
+</ul>
+<p>一个特性只有交到用户手中才能算 ”DONE”。</p>
+<blockquote>
+<p>phylee注： 这个原则意味着，1.从开发业务代码到上线生产环境必须要快。否则一个月甚至更长时间才能上线生产环境，开发人员早就忘了。2. 业务开发人员一定会关注代码发布过程，这样也可以不断完善改进流水线，催熟流水线。</p>
+</blockquote>
+<ul>
+<li>交付过程是每个成员的责任</li>
+<li>持续改进</li>
+</ul>
+<h2 id="第2章-配置管理"><a href="#第2章-配置管理" class="headerlink" title="第2章 配置管理"></a>第2章 配置管理</h2><p>2.1 本章将讨论三个问题：</p>
+<ul>
+<li>为管理应用程序的构建，部署，测试和发布过程做好准备。从两个方面解决这个问题：对所有内容进行版本控制；管理依赖关系。</li>
+<li>管理应用软件的配置信息。</li>
+<li>整个环境的配置管理，包括应用程序的依赖软件，硬件和基础设施。</li>
+</ul>
+<p>2.2 使用版本控制</p>
+<ul>
+<li>对所有内容进行版本控制，不仅仅是源代码，包括测试代码，数据库脚本、构建和部署脚本等所有和软件发布的文件都要纳入版本控制中。</li>
+<li>频繁提交代码到主干，因为长时间不提交代码会让合并工作变得过于复杂。</li>
+</ul>
+<p>2.4 软件配置管理</p>
+<ul>
+<li>应该以对待代码的方式来对待系统的配置，使其受到正确的管理和测试。</li>
+<li>配置与灵活性。灵活性是有代价的。</li>
+</ul>
+<blockquote>
+<p>phylee注： 修改配置并不比修改代码风险低，因为配置修改更难被测试。除非有很好的回滚机制，因为回滚配置可以很快。回滚机制的前提是有版本控制。</p>
+</blockquote>
+<p>2.5 环境管理</p>
+<p>环境管理的关键在于能通过一个全自动过程来创建环境。</p>
+<h2 id="第3章-持续集成"><a href="#第3章-持续集成" class="headerlink" title="第3章 持续集成"></a>第3章 持续集成</h2><p>3.2 实现持续集成 需要满足3个条件：</p>
+<ul>
+<li>版本控制</li>
+<li>自动化构建</li>
+<li>团队共识<br>团队共识很重要。持续集成不是一种工具，而是一种实践。需要开发团队的给予一定投入并遵守一些准则。</li>
+</ul>
+<h1 id="部署流水线"><a href="#部署流水线" class="headerlink" title="部署流水线"></a>部署流水线</h1><h2 id="第5章-部署流水线解析"><a href="#第5章-部署流水线解析" class="headerlink" title="第5章  部署流水线解析"></a>第5章  部署流水线解析</h2><p>5.3  部署流水线解析</p>
+<ul>
+<li>只生成一次二进制包<br>保证所有环境验证发布包是同一个。</li>
+<li>对不同环境采用同一部署方式<br>代码和应用配置文件分离，应用配置文件和环境相关。生产环境和开发测试环境应该由同一个团队管理。</li>
+<li>对部署进行冒烟测试</li>
+<li>向生产环境的副本中部署<br>开发测试环境尽可能和生产环境相同。</li>
+<li>每次变更都要立即在流水线中传递</li>
+<li>只要有环节失败，就停止整个流水线<br>一旦出现失败，变更团队应停下手头工作，立即着手修复。</li>
+</ul>
+<p>5.7.2 变更的撤销<br>软件版本的快速迭代，不可避免会有一些缺陷，快速回滚是保障快速发布的的重要能力。</p>
+<p>5.8 实现一个部署流水线<br>无论是从零创建新项目，还是想为已有的系统创建一个自动化的流水线，通常都应该使用<strong>增量方法</strong>来实现部署流水线。</p>
+<blockquote>
+<p>phylee注：理解“增量”很重要，流水线的建设从来不是一步到位的，不同公司交付模式不同，流水线也会不太一样，需要使用者和建设者的协作并根据实际交付流程不断完善它。</p>
+</blockquote>
+<p>建立完整流水线一般步骤:</p>
+<p>1 . 对价值流进行建模并创建简单的可工作框架</p>
+<blockquote>
+<p>能画出从代码提交到发布的整个过程的价值流程图。</p>
+</blockquote>
+<p>2 . 将构建和部署流程自动化</p>
+<p>3 . 将单元测试和代码分析自动化</p>
+<p>4 . 将验收测试自动化</p>
+<p>5 . 将发布自动化</p>
+<p>5.9 度量</p>
+<p>反馈是所有软件交付流程的核心。改善反馈的最佳方法是缩短反馈周期，并让结果可视化。</p>
+<p>重要的问题是：度量是什么？选择什么样的度量项对团队行为有很大的影响。</p>
+<p>对于软件交付过程来说，最重要的全局度量指标就是周期时间，它指的是从决定要做某个特性开始，直到把这个特性交付给用户的这段时间。“你所在的组织中，如果仅仅修改过一行代码，需要多长时间才能把它部h署到生产环境中？你们是否以一种可重复且可靠的方式做这类事情？”</p>
+<h2 id="第6章-构建于部署的脚本化"><a href="#第6章-构建于部署的脚本化" class="headerlink" title="第6章 构建于部署的脚本化"></a>第6章 构建于部署的脚本化</h2><p>6.3 构建部署脚本化的原则与实践</p>
+<ul>
+<li>为部署流水线的每个阶段创建脚本</li>
+<li>使用同样的脚本向所有环境部署</li>
+<li>确保部署流程是幂等的</li>
+</ul>
+<p>6.5 部署脚本化</p>
+<p>环境管理的核心原则之一就是：对测试生产环境的修改只能由自动化过程执行。也就是说，我们不应该手工远程登陆到这些环境上执行部署工作，而应该将其完全脚本化。</p>
+<h2 id="第7章-提交阶段"><a href="#第7章-提交阶段" class="headerlink" title="第7章 提交阶段"></a>第7章 提交阶段</h2><p>编译，单元测试，编译打包，静态检查</p>
+<p>7.2 提交阶段的原则和实践</p>
+<ul>
+<li>提供快速有用的反馈</li>
+<li>让开发人员也拥有所有权</li>
+<li>在超大项目团队中指定一个构建负责人<blockquote>
+<p>构建负责人不应该是由固定的人担任。团队成员应该轮流担当。</p>
+</blockquote>
+</li>
+</ul>
+<p>7.3 提交阶段的结果<br>提交阶段既有输入，也有输出。输入是源代码，输出是二进制包和报告。</p>
+<ul>
+<li>制品库<blockquote>
+<p>最容易想到的地方就是版本控制库，但它却不是一个正确的选择，因为这回让你的磁盘空间很快被吃掉，而且有些版本控制系统对二进制文件支持不佳。</p>
+</blockquote>
+</li>
+</ul>
+<p>制品库是一个不同寻常的版本控制系统，它仅保存某些版本，而不是全部。能够追溯已发布的软件究竟是版本控制库的哪个版本产生的。二进制文件的创建过程是可重复的。</p>
+<p>7.4 提交测试套件的原则与实践</p>
+<ul>
+<li>绝大部分测试由单元测试组成。</li>
+<li>避免用户界面测试</li>
+<li>使用依赖注入</li>
+<li>避免使用数据库</li>
+<li>在单元测试中避免异步</li>
+<li>使用测试替身<blockquote>
+<p>打桩是指利用模拟代码来代替原系统中的某个部分，并提供已封装好的响应。</p>
+</blockquote>
+</li>
+<li>最小化测试中的状态<blockquote>
+<p>很容易落入一个陷阱，即为了支撑测试，精心地建立起一堆难以理解和维护的数据结构。理想的测试应该能很容易和快速地进行测试准备，而清理工作也应该更快、更容易。对于结构良好的代码来说，其测试代码往往也非常整洁有序。如果测试看起来繁琐复杂，那可能是系统设计有问题。当然这是一个很难定性的问题。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="第8章-自动化验收测试"><a href="#第8章-自动化验收测试" class="headerlink" title="第8章 自动化验收测试"></a>第8章 自动化验收测试</h2><p>对于一个单独的验收测试，它的目的是验证一个用户故事或需求的验收条件是否被满足。验收条件有多种类型，如功能性验收条件和非功能性验收条件。非功能性验收条件包括容量，性能，可用性，安全性，易用性等等。</p>
+<p>与单元测试的区别：</p>
+<p>验收测试是针对业务的，单元测试是针对开发的。验收测试的目标是要证明应用程序的确实现了客户想要的，而不是开发人员所认为的正确方式来运行的。</p>
+<h2 id="第10章-应用程序的部署与发布"><a href="#第10章-应用程序的部署与发布" class="headerlink" title="第10章 应用程序的部署与发布"></a>第10章 应用程序的部署与发布</h2><p>10.4 部署回滚和零停机发布</p>
+<p>两个重要的约束。首先是数据，如果发布流程会修改数据，回滚操作就比价困难。另一个是需要与其他系统集成，如果发布中涉及两个以上的系统，回滚流程也会比较复杂。</p>
+<p>10.4.1 通过重新部署原有的正常版本来进行回滚</p>
+<p>10.4.2 零停机发布 (也称为热部署)</p>
+<p>10.4.3 蓝绿部署</p>
+<p>10.4.4 金丝雀发布</p>
+<p>好处：</p>
+<ul>
+<li>非常容易回滚。只要不把用户引导这个有问题的版本就行了，此时就可以来分析日志，查找问题。</li>
+<li>可以做A/B测试。某些公司会度量新特性额使用率，如果用的人不多，就会废弃它。（A/B测试也可以通过特性开关方式实现）</li>
+<li>可以通过逐渐增加负载，慢慢地把更多的用户引到新版本，记录并衡量应用程序的响应时间、CPU使用率， I/O、内存使用率以及日志中是否有异常报告这种方式，来检查一下应用程序是否满足容量需求。</li>
+</ul>
+<p>10.7 小贴士和窍门</p>
+<ul>
+<li>真正执行部署操作的人应该参与部署过程的创建</li>
+<li>记录部署活动</li>
+<li>不要删除旧文件，而是移动到别的位置</li>
+<li>部署是整个团队的责任<blockquote>
+<p>团队每个成员都应该知道如何部署，如何维护部署脚本。</p>
+</blockquote>
+</li>
+<li>不要直接对生产环境进行修改<blockquote>
+<p>生产环境应该是完全锁定的，这样只有部署流水线可以对其进行改变，包括从环境配置信息到部署在其中的应用程序和相关数据。</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="交付生态圈"><a href="#交付生态圈" class="headerlink" title="交付生态圈"></a>交付生态圈</h1><h2 id="第12章-数据管理"><a href="#第12章-数据管理" class="headerlink" title="第12章 数据管理"></a>第12章 数据管理</h2><p>12.4.2 将应用程序部署与数据库迁移解耦</p>
+<p>对数据库大多数修改应该是增加操作（比如向数据库中增加新表或字段），尽可能不修改已存在的结构。</p>
+<p>12.6 数据管理和部署流水线</p>
+<p>好的提交测试会避免复杂的数据准备。如果你发现自己很难为某个测试准备数据的话，这是一个明显的信号，表示你的设计需要更好地解耦。</p>
+<h2 id="第13章-组建和依赖管理"><a href="#第13章-组建和依赖管理" class="headerlink" title="第13章 组建和依赖管理"></a>第13章 组建和依赖管理</h2><p>13.3 依赖</p>
+<p>组件（component）和库（library）的差异：</p>
+<p>库是指团队除了选择权以外，没有控制权的那些软件包，它们通常很少更新。相反，组件是指应用程序所依赖的部分软件块，但它通常是由你自己的团队或你公司的其他团队开发的。组件通常更新频繁。</p>
+<p>13.3.1 依赖地狱</p>
+<p>依赖管理最常见的问题可能就是所谓的“依赖地狱”（dependency hell）, 有时被称为“DLL地狱”。当一个应用程序依赖于某个库的特定版本，但实际部署的是另一个版本，或者根本没有部署时，依赖地狱就产生了。</p>
+<p>13.6 管理二进制包</p>
+<p>13.6.1 制品库是如何运作的</p>
+<p>制品库的最重要特性就是，它不应该包含那些无法重现的产物。你应该能删除制品库，却不必担心无法找回有价值的内容。</p>
+<p>为什么要删除二进制产物呢？因为这些产物很大，考虑到存储空间，你最终也需要删除他们。已通过所有测试的产物和待发布的候选版本保存下来是非常值得的。已经发布过的也值得保存，因为可能会回滚到前面的版本，或需要对旧版本的用户提供一些技术支持。</p>
+<h2 id="第14章-版本控制进阶"><a href="#第14章-版本控制进阶" class="headerlink" title="第14章 版本控制进阶"></a>第14章 版本控制进阶</h2><p>14.6 主干开发</p>
+<p>好处：</p>
+<ul>
+<li>确保所有的代码被持续集成</li>
+<li>确保开发人员及时获得他人的修改</li>
+<li>避免项目后期的“合并地狱”和“集成地狱”</li>
+</ul>
+<h2 id="第15章-持续交付管理"><a href="#第15章-持续交付管理" class="headerlink" title="第15章 持续交付管理"></a>第15章 持续交付管理</h2><p>实现持续交付不仅仅是买些工具，做一些自动化的工作。它依赖于交付过程中所涉及的每个人的协作，来自管理层的支持，以及基层人员的改进意愿。</p>
+</div></div><div class="post-main post-comment"></div></article><link rel="stylesheet" type="text/css" href="//cdn.bootcdn.net/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcdn.net/ajax/libs/lato-font/3.0.0/css/lato-font.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcdn.net/ajax/libs/fancybox/2.1.5/jquery.fancybox.css"><script src="//cdn.bootcdn.net/ajax/libs/jquery/2.0.3/jquery.min.js"></script><script src="//cdn.bootcdn.net/ajax/libs/fancybox/2.1.5/jquery.fancybox.pack.js"></script><script>$(document).ready(function() {
+  $(".fancybox").fancybox();
+});
+</script></body></html>

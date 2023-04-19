@@ -1,0 +1,32 @@
+<!DOCTYPE html><html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content=" id=&quot;bool类型&quot;&gt;&lt;a href=&quot;#bool类型&quot; class=&quot;headerlink&quot; title=&quot;bool类型&quot;&gt;&lt;/a&gt;bool类型&lt;/h2&gt;&lt;p&gt;只有两个值：True和False。 bool类型是integer类型的子类型，True和False可以分别当成1和0"><link rel="stylesheet" type="text/css" href="/css/normalize.css"><link rel="stylesheet" type="text/css" href="/css/highlight.css"><link rel="stylesheet" type="text/css" href="/css/noise.css"><title>Python学习 - bool | Phylee的小站</title><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><meta name="generator" content="Hexo 5.0.0"></head><body><article class="wrapper"><div class="post-main"><div class="nav"><nav class="container"><a class="sidebar-nav-item active" href="/">Home</a><a class="sidebar-nav-item" href="/archives">Archives</a><a class="sidebar-nav-item" href="/about">About</a></nav><div class="container post-meta"><div class="post-tags"><a class="post-tag-none-link" href="/tags/Python/" rel="tag">Python</a></div><div class="post-time">2018-07-19</div></div></div><div class="container post-header"><h1>Python学习 - bool</h1></div><div class="container post-toc"><details class="toc"><summary class="toc-accordion">Table of Contents</summary><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#bool%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.</span> <span class="toc-text">bool类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bool-%E7%9A%84-True-%E5%92%8C-False"><span class="toc-number">2.</span> <span class="toc-text">bool 的 True 和 False</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F"><span class="toc-number">2.1.</span> <span class="toc-text">注意</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E5%8F%82%E8%80%83"><span class="toc-number">2.2.</span> <span class="toc-text">官方文档参考</span></a></li></ol></li></ol></details></div><div class="container post-content"><h2 id="bool类型"><a href="#bool类型" class="headerlink" title="bool类型"></a>bool类型</h2><p>只有两个值：True和False。 bool类型是integer类型的子类型，True和False可以分别当成1和0</p>
+<ul>
+<li>在Python2.7中，True和False是内建（built-in）变量，和普通自定义的变量一样可以被重新赋值。</li>
+<li>在Python3.x中，True与False都是关键字。 关键字，意味着不能被赋值和篡改。(可使用 import keyword; print(keyword.kwlist) 查看所有关键字。)</li>
+</ul>
+<h2 id="bool-的-True-和-False"><a href="#bool-的-True-和-False" class="headerlink" title="bool 的 True 和 False"></a>bool 的 True 和 False</h2><p>下面的bool值为False，除此之外其他值均是True。</p>
+<ul>
+<li>None</li>
+<li>False</li>
+<li>数值类型的零值。 例如：0, 0.0, 0j,Decimal(0), Fraction(0, 1)</li>
+<li>空的sequence和collections。例如： ‘’, (), [], {}, set(), range(0)</li>
+<li>用户自定义类的实例， 如果类定义了 <code>__bool__</code> (Python2.7 为<code>__nonzero__()</code>）或者 <code>__len__()</code> 方法, 且方法返回的是整数零值或者布尔False。</li>
+</ul>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>上面最后一个要特别注意，被坑过。类的实例的bool值也可能是False，例如标准库中 xml.etree.ElementTree 类的实例的bool值就可能是False。</p>
+<p>bool的判断逻辑顺序：</p>
+<ul>
+<li>只要一个类定义了 <code>__bool__()</code> 这个方法，那么它的实例的bool值，就是这个方法的返回值</li>
+<li>如果一个类没有定义 <code>__bool__()</code>， 那么就会根据 <code>__len__()</code>方法的返回值判断，返回值是0就是False</li>
+<li>如果 <code>__bool__()</code> 和 <code>__len__()</code> 方法都没有定义，则类的实例返回True</li>
+</ul>
+<h3 id="官方文档参考"><a href="#官方文档参考" class="headerlink" title="官方文档参考"></a><a href="https://docs.python.org/3/reference/datamodel.html#object.__bool__" target="_blank" rel="noopener">官方文档参考</a></h3><ul>
+<li><p>object.<code>__bool__</code>(self):  ( Python2.7 为 object.<code>__nonzero__</code>(self))</p>
+<p>Called to implement truth value testing and the built-in operation bool(); should return False or True. When this method is not defined, <code>__len__()</code> is called, if it is defined, and the object is considered true if its result is nonzero. If a class defines neither <code>__len__()</code> nor <code>__bool__()</code>, all its instances are considered true.</p>
+</li>
+<li><p>object.<code>__len__</code>(self)：</p>
+<p>Called to implement the built-in function len(). Should return the length of the object, an integer &gt;= 0. Also, an object that doesn’t define a <code>__bool__()</code> method and whose <code>__len__()</code> method returns zero is considered to be false in a Boolean context.</p>
+</li>
+</ul>
+</div></div><div class="post-main post-comment"></div></article><link rel="stylesheet" type="text/css" href="//cdn.bootcdn.net/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcdn.net/ajax/libs/lato-font/3.0.0/css/lato-font.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcdn.net/ajax/libs/fancybox/2.1.5/jquery.fancybox.css"><script src="//cdn.bootcdn.net/ajax/libs/jquery/2.0.3/jquery.min.js"></script><script src="//cdn.bootcdn.net/ajax/libs/fancybox/2.1.5/jquery.fancybox.pack.js"></script><script>$(document).ready(function() {
+  $(".fancybox").fancybox();
+});
+</script></body></html>

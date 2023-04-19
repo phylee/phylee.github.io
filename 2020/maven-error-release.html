@@ -1,0 +1,16 @@
+<!DOCTYPE html><html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="一个二方包发布不规范污染其他编译任务的问题。"><link rel="stylesheet" type="text/css" href="/css/normalize.css"><link rel="stylesheet" type="text/css" href="/css/highlight.css"><link rel="stylesheet" type="text/css" href="/css/noise.css"><title>记一个jar包里依赖的release包和maven仓库包不一致的问题 | Phylee的小站</title><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><meta name="generator" content="Hexo 5.0.0"></head><body><article class="wrapper"><div class="post-main"><div class="nav"><nav class="container"><a class="sidebar-nav-item active" href="/">Home</a><a class="sidebar-nav-item" href="/archives">Archives</a><a class="sidebar-nav-item" href="/about">About</a></nav><div class="container post-meta"><div class="post-tags"><a class="post-tag-none-link" href="/tags/Maven/" rel="tag">Maven</a></div><div class="post-time">2020-08-14</div></div></div><div class="container post-header"><h1>记一个jar包里依赖的release包和maven仓库包不一致的问题</h1></div><div class="container post-toc"><details class="toc"><summary class="toc-accordion">Table of Contents</summary><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E5%AE%9A%E4%BD%8D"><span class="toc-number">1.</span> <span class="toc-text">问题定位</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">2.</span> <span class="toc-text">解决方案</span></a></li></ol></details></div><div class="container post-content"><p>一个二方包发布不规范污染其他编译任务的问题。</p>
+<h2 id="问题定位"><a href="#问题定位" class="headerlink" title="问题定位"></a>问题定位</h2><ol>
+<li>对比线上环境部署jar包依赖的二方包和公司maven仓库的release包不一致</li>
+<li>查询远程仓库上传记录，最近没有新的提交，同时公司仓库已经设置release包是不能重复上传</li>
+<li>查询构建机器的本地仓库，发现本地仓库的release包和远程仓库的release包不一致，时间戳也比远程仓库的新。</li>
+<li>查询二方包发布记录，发现有上传相同relase版本号的失败任务，时间戳也基本一致。原因是 maven构建生命周期里deploy前面是install，上传失败但是install是成功的，这导致本地仓库.m2下相同release包被替换掉，在其他应用编译时发现本地仓库有相同relase版本号的jar就不会从远程仓库更新下载。</li>
+</ol>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><ol>
+<li>mvn deploy 增加参数 -Dmaven.install.skip=true</li>
+<li>分离部署使用的编译机器和发布二方包的机器</li>
+<li>release包发布前先检查远程仓库是否已存在，提前校验。若存在，编译前就终止任务。</li>
+</ol>
+</div></div><div class="post-main post-comment"></div></article><link rel="stylesheet" type="text/css" href="//cdn.bootcdn.net/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcdn.net/ajax/libs/lato-font/3.0.0/css/lato-font.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcdn.net/ajax/libs/fancybox/2.1.5/jquery.fancybox.css"><script src="//cdn.bootcdn.net/ajax/libs/jquery/2.0.3/jquery.min.js"></script><script src="//cdn.bootcdn.net/ajax/libs/fancybox/2.1.5/jquery.fancybox.pack.js"></script><script>$(document).ready(function() {
+  $(".fancybox").fancybox();
+});
+</script></body></html>

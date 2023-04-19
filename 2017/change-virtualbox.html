@@ -1,0 +1,39 @@
+<!DOCTYPE html><html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="一些命令行"><link rel="stylesheet" type="text/css" href="/css/normalize.css"><link rel="stylesheet" type="text/css" href="/css/highlight.css"><link rel="stylesheet" type="text/css" href="/css/noise.css"><title>VirtualBox命令行 | Phylee的小站</title><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><meta name="generator" content="Hexo 5.0.0"></head><body><article class="wrapper"><div class="post-main"><div class="nav"><nav class="container"><a class="sidebar-nav-item active" href="/">Home</a><a class="sidebar-nav-item" href="/archives">Archives</a><a class="sidebar-nav-item" href="/about">About</a></nav><div class="container post-meta"><div class="post-tags"><a class="post-tag-none-link" href="/tags/Virtualization/" rel="tag">Virtualization</a></div><div class="post-time">2017-10-23</div></div></div><div class="container post-header"><h1>VirtualBox命令行</h1></div><div class="container post-toc"><details class="toc"><summary class="toc-accordion">Table of Contents</summary><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%A6%82%E6%9E%9C%E4%BF%AE%E6%94%B9%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9A%84%E9%85%8D%E7%BD%AE%EF%BC%8C%E9%9C%80%E8%A6%81%E5%85%88%E5%85%B3%E9%97%AD%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="toc-number">1.</span> <span class="toc-text">1 . 如果修改虚拟机的配置，需要先关闭虚拟机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E4%BD%BF%E7%94%A8VBoxManage%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%9F%A5%E7%9C%8B%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%BF%A1%E6%81%AF%E4%B9%9F%E5%8F%AF%E4%BB%A5%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE"><span class="toc-number">2.</span> <span class="toc-text">2 . 使用VBoxManage命令行查看虚拟机信息也可以修改配置</span></a></li></ol></details></div><div class="container post-content"><p>一些命令行</p>
+<h2 id="1-如果修改虚拟机的配置，需要先关闭虚拟机"><a href="#1-如果修改虚拟机的配置，需要先关闭虚拟机" class="headerlink" title="1 . 如果修改虚拟机的配置，需要先关闭虚拟机"></a>1 . 如果修改虚拟机的配置，需要先关闭虚拟机</h2><h2 id="2-使用VBoxManage命令行查看虚拟机信息也可以修改配置"><a href="#2-使用VBoxManage命令行查看虚拟机信息也可以修改配置" class="headerlink" title="2 . 使用VBoxManage命令行查看虚拟机信息也可以修改配置"></a>2 . 使用VBoxManage命令行查看虚拟机信息也可以修改配置</h2><p>VBoxManage [-v|-version]  显示virtualbox的版本号</p>
+<p>VBoxManage list vms|runningvms  显示列表虚拟机|正在运行的虚拟机</p>
+<p>VBoxManage showvminfo | 显示指定虚拟机的信息</p>
+<blockquote>
+<p>[-details] 显示详细信息</p>
+</blockquote>
+<blockquote>
+<p>[-statistics] 显示统计信息</p>
+</blockquote>
+<blockquote>
+<p>[-machinereadable] 以清晰的格式显示虚拟机信息</p>
+</blockquote>
+<p>VBoxManage registervm 将指定文件所在的虚拟机添加到列表</p>
+<p>VBoxManage unregistervm | 从虚拟机列表清除指定的虚拟机</p>
+<blockquote>
+<p>[-delete] 从虚拟机列表删除指定的虚拟机</p>
+</blockquote>
+<p>VBoxManage createvm -name 创建指定名称的虚拟机</p>
+<blockquote>
+<p>[-register] 将创建的虚拟机添加到列表</p>
+</blockquote>
+<blockquote>
+<p>[-basefolder 指定虚拟机的基础目录</p>
+</blockquote>
+<blockquote>
+<p>[-settingsfile ] 指定虚拟机配置文件的基础目录</p>
+</blockquote>
+<blockquote>
+<p>[-uuid ] 创建指定uuid的虚拟机</p>
+</blockquote>
+<p>VBoxManage modifyvm 编辑指定的虚拟机的配置</p>
+<blockquote>
+<p>[-name ] 修改虚拟机的名称<br>[-ostype ]修改虚拟机的操作系统类型<br>[-memory ] 修改虚拟机的内存大小<br>[-vram ] 修改虚拟机的显存大小</p>
+</blockquote>
+</div></div><div class="post-main post-comment"></div></article><link rel="stylesheet" type="text/css" href="//cdn.bootcdn.net/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcdn.net/ajax/libs/lato-font/3.0.0/css/lato-font.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcdn.net/ajax/libs/fancybox/2.1.5/jquery.fancybox.css"><script src="//cdn.bootcdn.net/ajax/libs/jquery/2.0.3/jquery.min.js"></script><script src="//cdn.bootcdn.net/ajax/libs/fancybox/2.1.5/jquery.fancybox.pack.js"></script><script>$(document).ready(function() {
+  $(".fancybox").fancybox();
+});
+</script></body></html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html><html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content=" id=&quot;Ansible-执行任务流程&quot;&gt;&lt;a href=&quot;#Ansible-执行任务流程&quot; class=&quot;headerlink&quot; title=&quot;Ansible 执行任务流程&quot;&gt;&lt;/a&gt;Ansible 执行任务流程&lt;/h2&gt;&lt;p&gt;Ansible 版本：2.8.1"><link rel="stylesheet" type="text/css" href="/css/normalize.css"><link rel="stylesheet" type="text/css" href="/css/highlight.css"><link rel="stylesheet" type="text/css" href="/css/noise.css"><title>Ansible 学习小记 | Phylee的小站</title><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><meta name="generator" content="Hexo 5.0.0"></head><body><article class="wrapper"><div class="post-main"><div class="nav"><nav class="container"><a class="sidebar-nav-item active" href="/">Home</a><a class="sidebar-nav-item" href="/archives">Archives</a><a class="sidebar-nav-item" href="/about">About</a></nav><div class="container post-meta"><div class="post-tags"><a class="post-tag-none-link" href="/tags/Ansible/" rel="tag">Ansible</a></div><div class="post-time">2019-06-30</div></div></div><div class="container post-header"><h1>Ansible 学习小记</h1></div><div class="container post-toc"><details class="toc"><summary class="toc-accordion">Table of Contents</summary><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Ansible-%E6%89%A7%E8%A1%8C%E4%BB%BB%E5%8A%A1%E6%B5%81%E7%A8%8B"><span class="toc-number">1.</span> <span class="toc-text">Ansible 执行任务流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%87%E6%B3%A8"><span class="toc-number">2.</span> <span class="toc-text">备注</span></a></li></ol></details></div><div class="container post-content"><h2 id="Ansible-执行任务流程"><a href="#Ansible-执行任务流程" class="headerlink" title="Ansible 执行任务流程"></a>Ansible 执行任务流程</h2><p>Ansible 版本：2.8.1</p>
+<p>1 . 读取 ansible.cfg 配置文件。</p>
+<p>查找配置文件顺序(从上到下):</p>
+<ul>
+<li>ANSIBLE_CONFIG (environment variable if set)</li>
+<li>ansible.cfg (in the current directory)</li>
+<li>~/.ansible.cfg (in the home directory)</li>
+<li>/etc/ansible/ansible.cfg</li>
+</ul>
+<p>2 . 加载Inventory, 解析hosts文件, 获取远程主机。</p>
+<p>3 . 运行收集所有远程主机信息的任务，即setup模块。如果远程主机比较多，会比较耗时间和资源，可以禁用这个功能</p>
+<p>4 . 建立ssh连接，获取远程主机的当前用户家目录。</p>
+<p>5 . 建立ssh连接，在远程主机建立临时任务文件目录(mkdir -p)。默认～/.ansible/tmp,可在配置文件修改。</p>
+<p>6 . 建立ssh连接，获取远程主机Python解释器路径。</p>
+<p>7 . 将任务先存放到本地临时目录下的一个.py文件，再通过sftp将任务文件上传到远程主机的临时目录下。</p>
+<p>8 . 建立ssh连接，设置远程主机临时目录下任务文件可执行权限。(chmod u+x ）</p>
+<p>9 . 建立ssh连接，运行远程主机临时目录下的.py文件，执行任务，获取返回输出</p>
+<p>10 . 建立ssh连接，删除远程主机临时目录下的Python文件。（rm -f -r ）</p>
+<p>11 . 如果有下一个任务，继续执行 4 ～ 10。</p>
+<h2 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h2><p>1 . 每一个 play 包含了一个 task 列表。一个 task 在其所对应的所有主机上执行完毕之后, 下一个 task 才会执行。如果一个 host 执行 task 失败, 那么这个host在后面的task中将不会执行。</p>
+<p>2 . pipeline也是openssh的一个特性。在ansible执行每个任务的流程中，有一个过程是将临时任务文件put到一个ansible端的一个临时文件中，然后sftp传输到远端，然后通过ssh连接过去远程执行这个任务。如果开启了pipelining，一个任务的所有动作都在一个ssh会话中完成，也会省去sftp到远端的过程，它会直接将要执行的任务在ssh会话中进行。</p>
+<p>但是要注意，如果在ansible中使用了sudo命令的话(ssh user@host sudo cmd)，需要在远程主机节点的/etc/sudoers中禁用”requiretty”。或者在ansible的ssh参数上加上”-tt”选项。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh_args &#x3D; -C -o ControlMaster&#x3D;auto -o ControlPersist&#x3D;60s -tt</span><br></pre></td></tr></table></figure>
+
+<p>之所以要设置/etc/sudoers中的requiretty，是因为ssh远程执行命令时，它的环境是非登录式非交互式shell，默认不会分配tty，没有tty，ssh的sudo就无法关闭密码回显(使用”-tt”选项强制SSH分配tty)。所以出于安全考虑，/etc/sudoers中默认是开启requiretty的，它要求只有拥有tty的用户才能使用sudo，也就是说ssh连接过去不允许执行sudo。</p>
+</div></div><div class="post-main post-comment"></div></article><link rel="stylesheet" type="text/css" href="//cdn.bootcdn.net/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcdn.net/ajax/libs/lato-font/3.0.0/css/lato-font.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcdn.net/ajax/libs/fancybox/2.1.5/jquery.fancybox.css"><script src="//cdn.bootcdn.net/ajax/libs/jquery/2.0.3/jquery.min.js"></script><script src="//cdn.bootcdn.net/ajax/libs/fancybox/2.1.5/jquery.fancybox.pack.js"></script><script>$(document).ready(function() {
+  $(".fancybox").fancybox();
+});
+</script></body></html>
