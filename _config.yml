@@ -11,7 +11,7 @@ timezone: Asia/Shanghai
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://liyong.science
+url: https://phylee.github.io
 root: /
 permalink: :year/:title.html
 permalink_defaults:
@@ -40,14 +40,13 @@ external_link:
   exclude: ''
 filename_case: 0
 render_drafts: false
-post_asset_folder: false
+post_asset_folder: true
 relative_link: false
 future: true
 highlight:
   enable: true
   line_number: true
-  auto_detect: false
-  tab_replace:
+  auto_detect: true
   wrap: true
   hljs: false
 prismjs:
@@ -99,16 +98,8 @@ exclude:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: noise
+theme: starter
 
-noise:
-  menu:
-      Home: /
-      Archives: archives
-      About: about
-  social:
-      email: liyong2016@gmail.com
-      github: phylee
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html

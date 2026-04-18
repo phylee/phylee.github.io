@@ -5,7 +5,6 @@ db.json
 node_modules/
 public/
 .deploy*/
-.tag*
+_multiconfig.yml
 source/google9fd4d51476911999.html
-source/tags/
 themes
